@@ -1,0 +1,21 @@
+{
+  "judul": "Masalah kualitas air pada kolam budidaya lele",
+  "batas": "Aturan berasal dari 3 artikel ilmiah berbahasa Indonesia tentang budidaya lele (Clarias sp.) dan memakai ambang: amonia 0,8 mg/L, oksigen terlarut 5 mg/L, pH 6,5-8,5. Hanya mencakup amonia, oksigen terlarut, dan pH. Hasilnya saran awal, bukan keputusan akhir; konsultasikan ke penyuluh perikanan untuk kondisi kolam yang sebenarnya.",
+  "sumber": {
+    "S1": "Zidni, I., Iskandar, Rizal, A. Efektivitas Sistem Akuaponik dengan Jenis Tanaman yang Berbeda terhadap Kualitas Air Media Budidaya Ikan. Jurnal Perikanan dan Kelautan, Universitas Sultan Ageng Tirtayasa, Juni 2019, hlm. 81-94. https://jurnal.untirta.ac.id/index.php/jpk/article/download/7076/4853, diakses 5 Nov 2026",
+    "S2": "Artikel prosiding/preprint Universitas Muhammadiyah Sidoarjo tentang pemantauan dan pengendalian amonia kolam lele berbasis IoT (tabel parameter kualitas air lele: suhu, oksigen, pH, amonia). https://archive.umsida.ac.id/index.php/archive/preprint/download/3462/24660/27831, diakses 5 Nov 2026",
+    "S3": "Artikel jurnal JATI, Institut Teknologi Nasional Malang, tentang sistem monitoring dan kontrol budidaya lele berbasis IoT (ambang amonia lele < 0,8 mg/L, penggantian air). https://ejournal.itn.ac.id/jati/article/download/6185/3878/, diakses 5 Nov 2026"
+  },
+  "aturan": [
+    {"id": "R1", "jika": ["padat tebar tinggi", "pakan diberikan banyak"], "mode": "atau", "maka": "beban limbah tinggi", "sumber": ["S1"]},
+    {"id": "R2", "jika": ["beban limbah tinggi", "sisa pakan menumpuk di kolam"], "mode": "atau", "maka": "potensi amonia tinggi", "sumber": ["S2", "S3"]},
+    {"id": "R3", "jika": ["potensi amonia tinggi", "air berbau amonia menyengat"], "mode": "dan", "maka": "amonia tinggi", "sumber": ["S3"]},
+    {"id": "R4", "jika": ["amonia terukur >= 0,8 mg/L"], "mode": "dan", "maka": "amonia tinggi", "sumber": ["S3"]},
+    {"id": "R5", "jika": ["oksigen terlarut terukur < 5 mg/L"], "mode": "dan", "maka": "oksigen rendah", "sumber": ["S2"]},
+    {"id": "R6", "jika": ["pH terukur < 6,5", "pH terukur > 8,5"], "mode": "atau", "maka": "pH tidak ideal", "sumber": ["S2"]},
+    {"id": "R7", "jika": ["amonia tinggi"], "mode": "dan", "maka": "ganti sebagian air dan kurangi pakan", "sumber": ["S3"]},
+    {"id": "R8", "jika": ["oksigen rendah"], "mode": "dan", "maka": "tambah aerasi", "sumber": ["S2"]},
+    {"id": "R9", "jika": ["pH tidak ideal"], "mode": "dan", "maka": "pH perlu dikoreksi ke kisaran 6,5-8,5", "sumber": ["S2"]},
+    {"id": "R10", "jika": ["amonia tinggi", "oksigen rendah"], "mode": "dan", "maka": "kondisi kritis: aerasi dan ganti air segera", "sumber": ["S2", "S3"]}
+  ]
+}
